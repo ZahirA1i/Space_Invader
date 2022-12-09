@@ -67,9 +67,9 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
 
-    if (keys.a.pressed) {
+    if (keys.a.pressed && player.position.x  >= 0) {
         player.velocity.x = -5
-    } else if (keys.d.pressed) {
+    } else if (keys.d.pressed && player.position.x +player.width <= canvas.width) {
         player.velocity.x = 5
     } else {
         player.velocity.x = 0
