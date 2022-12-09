@@ -190,6 +190,10 @@ const keys = {
     },
 }
 
+let frames = 0
+let randomInterval = Math.floor(Math.random() * 500 + 500)
+
+console.log(randomInterval)
 
 function animate() {
     requestAnimationFrame(animate)
@@ -227,6 +231,15 @@ function animate() {
         player.rotation = 0
 
     }
+
+    if(frames % randomInterval === 0){
+        grids.push(new Grid())
+        let randomInterval = Math.floor(Math.random() * 500 + 500)
+        frames = 0
+        console.log(randomInterval)
+    }
+
+    frames++
 }
 
 animate()
