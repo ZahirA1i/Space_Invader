@@ -6,6 +6,10 @@ canvas.height = innerHeight
 
 class Player {
     constructor() {
+        this.position = {
+            x: 200,
+            y: 200
+        }
 
         this.velocity = {
             x: 0,
@@ -15,15 +19,11 @@ class Player {
         const image = new Image()
         image.src = './assets/spaceship.png'
         image.onload = () => {
-            const scale = 0.15
+
             this.image = image
-            this.width = image.width * scale
-            this.height = image.height * scale
-            this.position = {
-                x: canvas.width / 2 - this.width / 2,
-                y: canvas.height - this.height - 20
-            }
-    
+            this.width = image.width
+            this.height = image.height
+
         }
     }
 
