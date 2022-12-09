@@ -1,5 +1,8 @@
+const scoreEl = document.querySelector('#scoreEl')
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
+
+
 
 canvas.width = innerWidth
 canvas.height = innerHeight
@@ -13,6 +16,7 @@ class Player {
         }
 
         this.rotation = 0
+        this.opacity = 1
 
         const image = new Image()
         image.src = './assets/spaceship.png'
@@ -34,6 +38,7 @@ class Player {
         // c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
             c.save()
+            c.globalAlpha = this.opacity
             c.translate(player.position.x + player.width / 2, 
                         player.position.y + player.height / 2)
 
@@ -268,6 +273,12 @@ const keys = {
 
 let frames = 0
 let randomInterval = Math.floor(Math.random() * 500 + 500)
+let game = {
+    over: false,
+    active: true
+}
+
+let score = 0
 
 for (let i = 0; i < 100; i++) {
     particles.push(
@@ -307,6 +318,7 @@ function createParticles({object, color, fades}){
 console.log(randomInterval)
 
 function animate() {
+    if(!game.active) return
     requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -344,10 +356,19 @@ function animate() {
             player.width
             
             ) {
+                console.log ('you lose')
+
                 setTimeout(() => {
                     invaderProjectiles.splice(index, 1)
+                    player.opacity = 0
+                    game.over = true
                 }, 0)
-                    console.log ('you lose')
+
+                setTimeout(() => {
+                    game.active = false
+                }, 2000)
+
+                    
                     createParticles({
                         object: player,
                         color: 'white',
@@ -394,6 +415,10 @@ function animate() {
 
                         //remove invader and projectile
                         if (invaderFound && projectileFound) {
+                            score += 100
+                            console.log(score)
+                            scoreEl.innerHTML = score
+
                             createParticles({
                                 object: invader,
                                 fades: true
@@ -447,6 +472,8 @@ function animate() {
 animate()
 
 addEventListener('keydown', ({key}) => {
+    if(game.over) return
+
     switch (key) {
         case 'a':
             console.log('left')
