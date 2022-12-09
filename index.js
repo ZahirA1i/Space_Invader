@@ -85,6 +85,7 @@ class Projectile {
 
 const player = new Player()
 const projectiles = [
+
 ]
 
 const keys = {
@@ -105,8 +106,16 @@ function animate() {
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
-    projectiles.forEach(projectile => {
-        projectile.update()
+    projectiles.forEach((projectile, index) => {
+
+        if(projectile.position.y + projectile.radius <= 0) {
+            setTimeout(() => {
+                projectiles.splice(index, 1)
+            }, 0)
+            
+        } else {
+            projectile.update()
+        }
     })
 
     if (keys.a.pressed && player.position.x  >= 0) {
