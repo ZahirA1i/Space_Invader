@@ -4,13 +4,21 @@
     }
 
 </style>
+<audio id="song" >
+    <source src="./assets/bgmusic.mp3">
+</audio>
+
+<script>
+    window.addEventListener('click', () => {
+        document.getElementById("song").play();
+    });
+</script>
 
 <p style="position: fixed; z-index: 10; color: white; left: 10px; top: 10px; margin: 0; font-family: sans-serif;">
 
 <span>Score:</span> <span id="scoreEl">0</span>
 
 </p>
-
 
 <canvas width="1440" height="1080"></canvas>
 <script src="./index.js"></script>

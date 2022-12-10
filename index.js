@@ -19,7 +19,7 @@ class Player {
         this.opacity = 1
 
         const image = new Image()
-        image.src = './assets/spaceship.png'
+        image.src = './assets/falcons.png'
         image.onload = () => {
             const scale = 0.15
             this.image = image
@@ -126,12 +126,12 @@ class InvaderProjectile {
         this.position = position
         this.velocity = velocity
 
-        this.width = 3
+        this.width = 4
         this.height = 10
     }
 
     draw() {
-        c.fillStyle = 'white'
+        c.fillStyle = '#39ff14'
        c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
