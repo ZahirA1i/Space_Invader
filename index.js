@@ -19,7 +19,7 @@ class Player {
         this.opacity = 1
 
         const image = new Image()
-        image.src = './assets/falcons.png'
+        image.src = './assets/cannon.png'
         image.onload = () => {
             const scale = 0.15
             this.image = image
